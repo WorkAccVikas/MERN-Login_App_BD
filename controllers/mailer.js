@@ -58,9 +58,13 @@ export const registerMail = async (req, res) => {
   transporter
     .sendMail(message)
     .then(() => {
+      console.log("Email sent");
       return res
         .status(200)
         .send({ msg: "You should receive an email from us." });
     })
-    .catch((error) => res.status(500).send({ error }));
+    .catch((error) => {
+      console.log("Email Problem");
+      return res.status(500).send({ error });
+    });
 };
